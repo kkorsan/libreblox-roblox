@@ -1,0 +1,70 @@
+// Project-local debug tasks
+//
+// For more documentation on how to configure debug tasks,
+// see: https://zed.dev/docs/debugger
+[
+  {
+    "label": "LLDB: Debug RCCService binary",
+    "program": "$ZED_WORKTREE_ROOT/build/applications/rcc-service/RCCService",
+    "request": "launch",
+    "adapter": "CodeLLDB", // much easier but not as powerful as GDB
+    "args": [
+      "-Console",
+      "-Start",
+      "-PlaceId:1",
+      "-verbose"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT/build/applications/rcc-service/",
+  },
+  {
+    "label": "LLDB: Debug client binary",
+    "program": "$ZED_WORKTREE_ROOT/build/applications/sdl-client/RobloxPlayer",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+    "cwd": "$ZED_WORKTREE_ROOT/build/applications/sdl-client/",
+    "args": [
+      "--joinScriptUrl",
+      "http://localhost:3001/game/joinplace?test=true&placeId=1&ip=127.0.0.1&port=53640",
+      "--authenticationUrl",
+      "http://localhost:3001/login/negotiate",
+      "--authenticationTicket",
+      "1",
+      "--md5",
+      "ios,ios",
+    ],
+  },
+  {
+    "label": "LLDB: Debug studio binary",
+    "program": "$ZED_WORKTREE_ROOT/build/applications/studio/RobloxStudio",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+    "cwd": "$ZED_WORKTREE_ROOT/build/applications/studio/",
+    "env": {
+      // force x11
+      "QT_QPA_PLATFORM": "xcb",
+    },
+  },
+  // tests
+  //
+  {
+    "label": "LLDB: Debug App Unit test",
+    "program": "$ZED_WORKTREE_ROOT/build/tests/App.UnitTest/App.UnitTest",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+    "cwd": "$ZED_WORKTREE_ROOT/assets/",
+  },
+  {
+    "label": "LLDB: Debug Base unit test",
+    "program": "$ZED_WORKTREE_ROOT/build/tests/Base.UnitTest/Base.UnitTest",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+    "cwd": "$ZED_WORKTREE_ROOT/build/tests/Base.UnitTest/",
+  },
+  {
+    "label": "LLDB: Debug RobloxTest",
+    "program": "$ZED_WORKTREE_ROOT/build/tests/RobloxTest/RobloxTest",
+    "request": "launch",
+    "adapter": "CodeLLDB",
+    "cwd": "$ZED_WORKTREE_ROOT/tests/RobloxTest/",
+  },
+]

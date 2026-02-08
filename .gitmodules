@@ -1,0 +1,3 @@
+[submodule "SARibbon"]
+	path = third-party/sa-ribbon
+	url = https://github.com/czyt1988/SARibbon.git

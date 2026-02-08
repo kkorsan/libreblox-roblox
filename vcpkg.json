@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "roblox",
+  "version-string": "0.1.0",
+  "builtin-baseline": "8a21ce99a79bea9d872c7b434fd5e6da37c441ad",
+  "dependencies": [
+    "boost-system",
+    "boost-asio",
+    "boost-filesystem",
+    "boost-thread",
+    "boost-iostreams",
+    "boost-program-options",
+    "boost-chrono",
+    "boost-math",
+    "boost-pool",
+    "boost-circular-buffer",
+    "boost-crc",
+    "boost-flyweight",
+    "boost-ublas",
+    "boost-format",
+    "boost-foreach",
+    "boost-bimap",
+    "boost-accumulators",
+    "boost-test",
+    "crow",
+    "curl",
+    "freetype",
+    "nlohmann-json",
+    "openssl",
+    "sdl3",
+    "zlib",
+    "libpng",
+    "libjpeg-turbo",
+    "lz4",
+    "glew",
+    {
+      "name": "directxsdk",
+      "platform": "windows"
+    },
+    "draco"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "linux-x64-release-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_MAKE_PROGRAM": "/usr/bin/ninja",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_ASM_COMPILER": "as",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "OPENGL_opengl_LIBRARY": "/usr/lib/libGL.so",
+        "OPENGL_glx_LIBRARY": "/usr/lib/libGL.so",
+        "OPENGL_INCLUDE_DIR": "/usr/include",
+        "X11_X11_LIB": "/usr/lib/libX11.so",
+        "X11_Xext_LIB": "/usr/lib/libXext.so",
+        "X11_X11_INCLUDE_PATH": "/usr/include"
+      }
+    },
+    {
+      "name": "linux-x64-release-player",
+      "inherits": "linux-x64-release-base",
+      "cacheVariables": {
+        "BUILD_SDLCLIENT": "ON",
+        "BUILD_ROBLOXSTUDIO": "OFF",
+        "BUILD_RCCSERVICE": "OFF",
+        "BUILD_CORESCRIPTCONVERTER": "ON"
+      }
+    },
+    {
+      "name": "linux-x64-release-server",
+      "inherits": "linux-x64-release-base",
+      "cacheVariables": {
+        "BUILD_SDLCLIENT": "OFF",
+        "BUILD_ROBLOXSTUDIO": "OFF",
+        "BUILD_RCCSERVICE": "ON",
+        "BUILD_CORESCRIPTCONVERTER": "OFF"
+      }
+    },
+    {
+      "name": "linux-x64-release-studio",
+      "inherits": "linux-x64-release-base",
+      "cacheVariables": {
+        "BUILD_SDLCLIENT": "OFF",
+        "BUILD_ROBLOXSTUDIO": "ON",
+        "BUILD_RCCSERVICE": "OFF",
+        "BUILD_CORESCRIPTCONVERTER": "OFF"
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+/* Copyright 2003-2009 ROBLOX Corporation, All Rights Reserved */
+#include "stdafx.h"
+
+#include "tool/GroupDropTool.h"
+#include "tool/MegaDragger.h"
+#include "tool/RunDragger.h"
+#include "tool/ToolsArrow.h"
+#include "v8datamodel/PartInstance.h"
+#include "v8datamodel/Workspace.h"
+#include "v8datamodel/Camera.h"
+#include "v8datamodel/InputObject.h"
+#include "v8datamodel/ChangeHistory.h"
+#include "SelectState.h"
+
+
+namespace RBX {
+
+const char* const sGroupDropTool = "GroupDropTool";
+
+// ToDo - should the parts all be shared pointers as part of a multiplayer dragging redo?
+
+GroupDropTool::GroupDropTool(	PartInstance* mousePart,
+								const PartArray& partArray,
+								Workspace* workspace,
+								bool suppressAlign)
+	: Named<GroupDragTool, sGroupDropTool>(mousePart,Vector3(),partArray,workspace)
+{
+	capture();
+
+	dragging = true;
+	megaDragger->startDragging();
+	if (!suppressAlign)
+		megaDragger->alignAndCleanParts();
+	else
+		megaDragger->cleanParts();
+	lastHit = mousePart->getLocation().translation;
+
+}
+
+/*override*/ shared_ptr<MouseCommand> GroupDropTool::onMouseDown(const shared_ptr<InputObject>& inputObject)
+{
+	RBXASSERT(0);
+	return shared_from(this);
+}
+
+shared_ptr<MouseCommand> GroupDropTool::onMouseUp(const shared_ptr<InputObject>& inputObject)
+{
+	Super::onMouseUp(inputObject);
+	releaseCapture();
+	return shared_ptr<MouseCommand>();
+}
+
+
+
+shared_ptr<MouseCommand> GroupDropTool::onKeyDown(const shared_ptr<InputObject>& inputObject)
+{
+	switch (inputObject->getKeyCode())
+	{
+	case KC_BACKSPACE:
+	case KC_DELETE:
+	case KC_ESCAPE:
+		{
+			return onCancelOperation();
+		}
+    default:
+        break;
+	}
+	return Super::onKeyDown(inputObject);
+}
+
+
+shared_ptr<MouseCommand> GroupDropTool::onCancelOperation()
+{
+	megaDragger->removeParts();
+	dragging = false;
+	//Cancel the operation by removing the part from the workspace
+	releaseCapture();
+	return shared_ptr<MouseCommand>();
+}
+
+GroupDropTool::~GroupDropTool()
+{
+}
+
+
+} // namespace

@@ -1,0 +1,13 @@
+{
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "editor.formatOnSave": true,
+    "C_Cpp.formatting": "clangFormat",
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.intelliSenseMode": "linux-clang-x64",
+    "C_Cpp.semanticHighlighting": true,
+    "files.associations": {
+        "*.inl": "cpp",
+        "*.h": "cpp",
+        "*.hpp": "cpp"
+    }
+}
