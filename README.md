@@ -5,7 +5,7 @@ MacOS, Linux and Windows compatibility and a more organized codebase.
 
 # Information & Requirements
 ## Features Checklist
-- [x] Msvc and Clang compatible C++17 standart code
+- [x] Msvc and Gcc compatible C++17 standart code
 - [ ] Windows compatible gameservers
 - [ ] Properly functioning roblox studio
 - [ ] Android and ios clients
@@ -26,11 +26,11 @@ MacOS, Linux and Windows compatibility and a more organized codebase.
 ## Prerequisites
 - CMake (>= 3.15)
 - Vcpkg
-- Clang, Gcc or Msvc (VS2019+)
+- Gcc or Msvc (VS2019+)
 - Ninja
 - Git
 
-# Building with Gcc, Clang and other cross-compilers
+# Building with Gnu Compiler Collection
 
 First off, set up vcpkg via Terminal
 ```bash
@@ -62,6 +62,6 @@ cmake -B build -DCMAKE_TOOLCHAIN_FILE=/path/to/vcpkg/scripts/buildsystems/vcpkg.
 ninja -C build
 ```
 
-# Building with Msvc
+# Building with Microsoft Visual C++
 
 To-Do, Not tested.
